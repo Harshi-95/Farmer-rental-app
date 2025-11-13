@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f5;
+            text-align: center;
+            padding: 50px;
+        }
+        .popup {
+            background: #fff;
+            padding: 30px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            animation: popupAnimation 0.5s ease-in-out;
+        }
+        .popup h2 {
+            color: #28a745;
+        }
+        .popup p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .popup button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #218838;
+        }
+        @keyframes popupAnimation {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <h2>✅ Payment Successful!</h2>
+        <p>Your booking is confirmed.</p>
+        <p>Booking ID: <b>{{ booking.id }}</b></p>
+        <button onclick="window.location.href='/receipt'">View Receipt</button>
+    </div>
+</body>
+</html>

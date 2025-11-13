@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        .booking-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Payment for Your Booking</h2>
+        <div class="booking-details">
+            <p><b>Equipment:</b> {{ booking.name }}</p>
+            <p><b>Duration:</b> {{ booking.duration }} days</p>
+            <p><b>Total Amount:</b> ₹{{ booking.total }}</p>
+        </div>
+        <form method="POST">
+            <label for="method"><b>Select Payment Method:</b></label>
+            <select name="method" id="method" required>
+                <option value="UPI">UPI</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+            <button type="submit" onclick="alert('Payment Successful! Redirecting to receipt...')">Pay Now</button>
+        </form>
+    </div>
+</body>
+</html>

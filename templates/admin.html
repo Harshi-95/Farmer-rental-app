@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>All Bookings</h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Equipment</th>
+                <th>Duration (days)</th>
+                <th>Price per day</th>
+                <th>Total</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.renter_name }}</td>
+                <td>{{ booking.equipment_name }}</td>
+                <td>{{ (booking.end_date - booking.start_date).days }}</td>
+                <td>{{ booking.price if booking.price is defined else 'N/A' }}</td>
+                <td>{{ ((booking.end_date - booking.start_date).days * booking.price) if booking.price is defined else 'N/A' }}</td>
+                <td>{{ booking.start_date }}</td>
+                <td>{{ booking.end_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

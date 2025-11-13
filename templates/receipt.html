@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Receipt</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f0f2f5;
+            text-align: center;
+            padding: 40px;
+        }
+        .receipt-container {
+            background: #ffffff;
+            padding: 25px 30px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        h2 {
+            color: #28a745;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .details {
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .details p {
+            margin: 6px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .total {
+            font-weight: bold;
+            color: #000;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            font-size: 16px;
+            margin-top: 25px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media print {
+            button {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        function downloadReceipt() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <div class="receipt-container">
+        <h2>Booking Receipt</h2>
+        <div class="details">
+            <p><b>Renter:</b> {{ booking.username }}</p>
+            <p><b>Equipment:</b> {{ booking.name }}</p>
+            <p><b>Duration:</b> {{ booking.duration }} days</p>
+            <p><b>Price per Day:</b> ₹{{ booking.price }}</p>
+            <p class="total"><b>Total:</b> ₹{{ booking.total }}</p>
+            <p><b>Start Date:</b> {{ booking.start_date }}</p>
+            <p><b>End Date:</b> {{ booking.end_date }}</p>
+            <p><b>Payment Method:</b> {{ payment_method }}</p>
+        </div>
+        <button onclick="downloadReceipt()">Download Receipt</button>
+    </div>
+</body>
+</html>

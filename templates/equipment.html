@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Logout button slightly below top-right -->
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+    <div class="header">
+        <h1>Available Equipment</h1>
+        <form method="GET" class="search-bar">
+            <input type="text" name="search" placeholder="Search equipment" value="{{ search }}">
+            <select name="sort">
+                <option value="name" {% if sort=='name' %}selected{% endif %}>Sort by Name</option>
+                <option value="price" {% if sort=='price' %}selected{% endif %}>Sort by Price</option>
+            </select>
+            <button type="submit" class="btn">Search</button>
+        </form>
+    </div>
+    
+    <div class="equipment-grid">
+        {% for item in equipment_list %}
+        <div class="card">
+            <img src="{{ item.image_url }}" alt="{{ item.name }}">
+            <h3>{{ item.name }}</h3>
+            <p>Category: {{ item.category }}</p>
+            <p>Price per day: ₹{{ item.price }}</p>
+            <form action="{{ url_for('book', equipment_id=item.id) }}" method="POST">
+                <input type="number" name="duration" min="1" placeholder="Days" required>
+                <button type="submit" class="btn">Book Now</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
